@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Grades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .summary {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Grades</h1>
+<div id="studentData"></div>
+<div class="summary" id="summary"></div>
+
+<script>
+const grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
+
+// Process grades
+const studentsArray = grades.split(", ");
+const studentData = [];
+let totalScore = 0;
+let highestScore = Number.MIN_VALUE;
+let lowestScore = Number.MAX_VALUE;
+
+for (const student of studentsArray) {
+    const [name, scoreString] = student.split("|");
+    const score = parseInt(scoreString);
+
+    // Capitalize first letter of each name
+    const formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+
+    studentData.push({ name: formattedName, score: score });
+    totalScore += score;
+    highestScore = Math.max(highestScore, score);
+    lowestScore = Math.min(lowestScore, score);
+}
+
+const totalStudents = studentData.length;
+const averageScore = (totalScore / totalStudents).toFixed(2);
+
+// Display student data
+const studentDataDiv = document.getElementById("studentData");
+let studentTable = "<table><tr><th>Name</th><th>Score</th></tr>";
+studentData.forEach(student => {
+    studentTable += `<tr><td>${student.name}</td><td>${student.score}</td></tr>`;
+});
+studentTable += "</table>";
+studentDataDiv.innerHTML = studentTable;
+
+// Display summary
+const summaryDiv = document.getElementById("summary");
+summaryDiv.innerHTML = `
+    Total Students: ${totalStudents}<br>
+    Highest Score: ${highestScore}<br>
+    Lowest Score: ${lowestScore}<br>
+    Average Score: ${averageScore}
+`;
+</script>
+
+</body>
+</html>
