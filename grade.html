@@ -33,9 +33,9 @@
 <div class="summary" id="summary"></div>
 
 <script>
-const grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
+const grades = "aymen|25, drake|32, mary|34, ann|22, justin|28, frank|15, lisa|19, mike|30, park|26, leul|27";
 
-// Process grades
+
 const studentsArray = grades.split(", ");
 const studentData = [];
 let totalScore = 0;
@@ -46,8 +46,7 @@ for (const student of studentsArray) {
     const [name, scoreString] = student.split("|");
     const score = parseInt(scoreString);
 
-    // Capitalize first letter of each name
-    const formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+     const formattedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
     studentData.push({ name: formattedName, score: score });
     totalScore += score;
@@ -58,8 +57,7 @@ for (const student of studentsArray) {
 const totalStudents = studentData.length;
 const averageScore = (totalScore / totalStudents).toFixed(2);
 
-// Display student data
-const studentDataDiv = document.getElementById("studentData");
+ const studentDataDiv = document.getElementById("studentData");
 let studentTable = "<table><tr><th>Name</th><th>Score</th></tr>";
 studentData.forEach(student => {
     studentTable += `<tr><td>${student.name}</td><td>${student.score}</td></tr>`;
@@ -67,8 +65,7 @@ studentData.forEach(student => {
 studentTable += "</table>";
 studentDataDiv.innerHTML = studentTable;
 
-// Display summary
-const summaryDiv = document.getElementById("summary");
+ const summaryDiv = document.getElementById("summary");
 summaryDiv.innerHTML = `
     Total Students: ${totalStudents}<br>
     Highest Score: ${highestScore}<br>
